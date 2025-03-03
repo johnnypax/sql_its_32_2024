@@ -63,3 +63,23 @@ INSERT INTO Carta (numero, scadenza, contoRIF, clienteRIF) VALUES
 ("2468013579246801", '2032-12-05', 8, 8),
 ("9182736450918273", '2033-02-28', 9, 9),
 ("3645091827364509", '2034-08-18', 10, 10);
+
+-- Dato il codice fiscale di un cliente, restituire tutte le carte di credito possedute
+SELECT nome, cognome, cod_fis AS "codice fiscale", numero, scadenza
+	FROM Cliente
+    JOIN Carta ON Cliente.clienteID = Carta.clienteRIF
+    WHERE cod_fis = "BNCLRA85B02H501Y";
+    
+-- Dato il codice fiscale di un cliente, restituire tutte l'elenco delle 
+-- carte di credito possedute e relativo conto bancario associato.
+SELECT * 
+	FROM Cliente 
+    JOIN Carta ON Cliente.clienteID = Carta.clienteRIF
+    JOIN Conto ON Carta.contoRIF = Conto.contoID
+    WHERE cod_fis = "BNCLRA85B02H501Y";
+    
+SELECT * FROM Conto;
+
+SELECT * FROM Conto WHERE iban = "IT60G0300203280000000000010";
+SELECT * FROM Conto WHERE contoID = 10;
+
